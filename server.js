@@ -230,8 +230,22 @@ app.post("/add", (req, res) => {
         image: './public/images/logo.png',
         width: 50
       },
-        { text: '\n      Resumo Medicina no Trabalho                                                                                       \n\n',  color: 'white', bold: true, background: '#A464A6'},
-        {
+      // { text: '\n      Resumo Medicina no Trabalho                                                                                       \n\n', color: 'white', bold: true, background: '#A464A6' },
+      {
+      style: 'tableExample', 
+          table: {
+            heights: 10,widths: ['*'],
+            body: [
+              [
+                { text: '   Resumo Medicina no Trabalho: ', style: 'header',color: 'white',fillColor:'#A464A6' },                 
+              ],
+            ]
+        },   
+          layout: 'noBorders'
+      },
+
+
+      {
           text:[
             { text: 'ID Utente: ', style:'boldText' },        { text: MemberUserID, style:'normalText' }, "     ",
             { text: 'Utente: ', style:'boldText' },           { text: MemberName+'\n\n', style:'normalText' }, 
@@ -246,14 +260,28 @@ app.post("/add", (req, res) => {
         
       },
             
-      { text: '\n      Resultados Análises                                                                                               \n\n', color: 'white', bold: true, background: '#A464A6' },
+      // { text: '\n      Resultados Análises                                                                                               \n\n', color: 'white', bold: true, background: '#A464A6' },
+      
+      {
+      style: 'tableExample', 
+          table: {
+            heights: 10,widths: ['*'],
+            body: [
+              [
+                { text: '   Resultados Análises ', style: 'header',color: 'white',fillColor:'#A464A6' },                 
+              ],
+            ]
+        },   
+          layout: 'noBorders'
+      },
+
 
      {
       style: 'tableExample', 
           table: {
             headerRows: 1,heights: 10,widths: ['*', '*', '*' , '*', '*', '*' ],
             body: [
-              [{ text: '\n\nIMC', style: 'header' }, '','', '','',''],
+              [{ text: 'IMC', style: 'header' }, '','', '','',''],
               [
                 { text: 'Altura: ', style: 'boldText' }, { text: Height, style: 'italicText' },
                 { text: 'Peso', style: 'boldText' } , { text: HeightWeight, style: 'italicText' },
@@ -286,12 +314,12 @@ app.post("/add", (req, res) => {
               [{colSpan: 1, text: 'SPo2', style: 'header' }, '','', ''],
               [
                 { text: 'Oxigenio: ', style: 'boldText' }, { text: BoOxygen, style: 'italicText' },
-                { text: 'Listagem:', style: 'boldText' } , { text: BoOxygenList, style: 'italicText' },
+                { text: 'Valores:', style: 'boldText' } , { text: BoOxygenList, style: 'italicText' },
                 
               ],
                             [
                 { text: 'Bpm: ', style: 'boldText' }, { text: BoBpm, style: 'italicText' },
-                { text: 'Listagm:', style: 'boldText' } , { text: BoBpmList, style: 'italicText' },
+                { text: 'Valores:', style: 'boldText' } , { text: BoBpmList, style: 'italicText' },
                 
               ],
             ]
@@ -406,7 +434,7 @@ app.post("/add", (req, res) => {
               ],
             ]
           },         
-          layout: 'lightHorizontalLines'
+          layout: 'lightHorizontalLines',pageBreak: 'before',
       },
       // {
       // style: 'tableExample', 
@@ -495,7 +523,7 @@ app.post("/add", (req, res) => {
 		header: {
 			fontSize: 10,
 			bold: true,
-			margin: [0, 0, 0, 10]
+			// margin: [0, 0, 0, 10]
 		},
 		subheader: {
 			fontSize: 8,
