@@ -139,9 +139,11 @@ app.post("/add", (req, res) => {
   const PEEcgRV5                          = req.body.PEEcg.RV5;
   const PEEcgSV1                          = req.body.PEEcg.SV1;
   const PEEcgResultStr                    = req.body.PEEcg.ResultStr;
-  const PEEcgEcgImg                       = req.body.PEEcg.EcgImg;
+  let PEEcgEcgImg                         = req.body.PEEcg.EcgImg;
 
-
+  if (typeof PEEcgEcgImg == 'undefined'|| PEEcgEcgImg =='' ) {
+        PEEcgEcgImg='/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAfAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+/iiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA/9k=\n'
+      }
 
   const UltrasonicNotes                   = req.body.Ultrasonic.Notes;
   const UltrasonicDescrible               = req.body.Ultrasonic.Describle;
@@ -153,54 +155,61 @@ app.post("/add", (req, res) => {
   const BloodFatHdlChol                   = req.body.BloodFat.HdlChol;
   const BloodFatTrig                      = req.body.BloodFat.Trig;
   const BloodFatTcHdl                     = req.body.BloodFat.TcHdl;
-  const BloodFatCalcLdl                   = req.body.BloodFat.CalcLdl;
-  const BloodFatResult                    = req.body.BloodFat.Result;
+  const BloodFatCalcLdl   	              = req.body.BloodFat.CalcLdl;
+  
+  let BloodFatResult                      = req.body.BloodFat.Result;
+  if (BloodFatResult == '1') {
+        BloodFatResult='Anormal'
+  }
+  else if (BloodFatResult == '0') {
+    BloodFatResult='Normal'
+  } else {BloodFatResult='N/D'}
 
 
-  const PsychoA_blueAverageScore          = req.body.PsychologicalAssessment.TableSCL90.blueAverageScore;
-  const PsychoA_bluePNumber               = req.body.PsychologicalAssessment.TableSCL90.bluePNumber;
-  const PsychoA_blueScore                 = req.body.PsychologicalAssessment.TableSCL90.blueScore;
-  const PsychoA_bodyAverageScore          = req.body.PsychologicalAssessment.TableSCL90.bodyAverageScore;
-  const PsychoA_bodyPNumber               = req.body.PsychologicalAssessment.TableSCL90.bodyPNumber;
-  const PsychoA_bodyScore                 = req.body.PsychologicalAssessment.TableSCL90.bodyScore;
-  const PsychoA_curiouScore               = req.body.PsychologicalAssessment.TableSCL90.curiouScore;
-  const PsychoA_curiousAverageScore       = req.body.PsychologicalAssessment.TableSCL90.curiousAverageScore;
-  const PsychoA_curiousPNumber            = req.body.PsychologicalAssessment.TableSCL90.curiousPNumber;
-  const PsychoA_forceAverageScore         = req.body.PsychologicalAssessment.TableSCL90.forceAverageScore;
-  const PsychoA_forcePNumber              = req.body.PsychologicalAssessment.TableSCL90.forcePNumber;
-  const PsychoA_forceScore                = req.body.PsychologicalAssessment.TableSCL90.forceScore;
-  const PsychoA_hostileAverageScore       = req.body.PsychologicalAssessment.TableSCL90.hostileAverageScore;
-  const PsychoA_hostilePNumber            = req.body.PsychologicalAssessment.TableSCL90.hostilePNumber;
-  const PsychoA_hostileScore              = req.body.PsychologicalAssessment.TableSCL90.hostileScore;
-  const PsychoA_mType                     = req.body.PsychologicalAssessment.TableSCL90.mType;
-  const PsychoA_nNumber                   = req.body.PsychologicalAssessment.TableSCL90.nNumber;
-  const PsychoA_nNumberStandard           = req.body.PsychologicalAssessment.TableSCL90.nNumberStandard;
-  const PsychoA_otherAverageScore         = req.body.PsychologicalAssessment.TableSCL90.otherAverageScore;
-  const PsychoA_otherPNumber              = req.body.PsychologicalAssessment.TableSCL90.otherPNumber;
-  const PsychoA_otherScore                = req.body.PsychologicalAssessment.TableSCL90.otherScore;
-  const PsychoA_pAverageScore             = req.body.PsychologicalAssessment.TableSCL90.pAverageScore;
-  const PsychoA_pAverageScoreStandard     = req.body.PsychologicalAssessment.TableSCL90.pAverageScoreStandard;
-  const PsychoA_pNumber                   = req.body.PsychologicalAssessment.TableSCL90.pNumber;
-  const PsychoA_pNumberStandard           = req.body.PsychologicalAssessment.TableSCL90.pNumberStandard;
-  const PsychoA_pScore                    = req.body.PsychologicalAssessment.TableSCL90.pScore;
-  const PsychoA_pScoreStandard            = req.body.PsychologicalAssessment.TableSCL90.pScoreStandard;
-  const PsychoA_recordNo                  = req.body.PsychologicalAssessment.TableSCL90.recordNo;
-  const PsychoA_relationAverageScore      = req.body.PsychologicalAssessment.TableSCL90.relationAverageScore;
-  const PsychoA_relationPNumber           = req.body.PsychologicalAssessment.TableSCL90.relationPNumber;
-  const PsychoA_relationScore             = req.body.PsychologicalAssessment.TableSCL90.relationScore;
-  const PsychoA_spiritAverageScore        = req.body.PsychologicalAssessment.TableSCL90.spiritAverageScore;
-  const PsychoA_spiritPNumber             = req.body.PsychologicalAssessment.TableSCL90.spiritPNumber;
-  const PsychoA_spiritScore               = req.body.PsychologicalAssessment.TableSCL90.spiritScore;
-  const PsychoA_stubbornAverageScore      = req.body.PsychologicalAssessment.TableSCL90.stubbornAverageScore;
-  const PsychoA_stubbornPNumber           = req.body.PsychologicalAssessment.TableSCL90.stubbornPNumber;
-  const PsychoA_stubbornScore             = req.body.PsychologicalAssessment.TableSCL90.stubbornScore;
-  const PsychoA_terrorAverageScore        = req.body.PsychologicalAssessment.TableSCL90.terrorAverageScore;
-  const PsychoA_terrorPNumber             = req.body.PsychologicalAssessment.TableSCL90.terrorPNumber;
-  const PsychoA_terrorScore               = req.body.PsychologicalAssessment.TableSCL90.terrorScore;
-  const PsychoA_totalAvgScore             = req.body.PsychologicalAssessment.TableSCL90.totalAvgScore;
-  const PsychoA_totalAvgScoreStandard     = req.body.PsychologicalAssessment.TableSCL90.totalAvgScoreStandard;
-  const PsychoA_totalScore                = req.body.PsychologicalAssessment.TableSCL90.totalScore;
-  const PsychoA_totalScoreStandard        = req.body.PsychologicalAssessment.TableSCL90.totalScoreStandard;
+  // const PsychoA_blueAverageScore          = req.body.PsychologicalAssessment.TableSCL90.blueAverageScore;
+  // const PsychoA_bluePNumber               = req.body.PsychologicalAssessment.TableSCL90.bluePNumber;
+  // const PsychoA_blueScore                 = req.body.PsychologicalAssessment.TableSCL90.blueScore;
+  // const PsychoA_bodyAverageScore          = req.body.PsychologicalAssessment.TableSCL90.bodyAverageScore;
+  // const PsychoA_bodyPNumber               = req.body.PsychologicalAssessment.TableSCL90.bodyPNumber;
+  // const PsychoA_bodyScore                 = req.body.PsychologicalAssessment.TableSCL90.bodyScore;
+  // const PsychoA_curiouScore               = req.body.PsychologicalAssessment.TableSCL90.curiouScore;
+  // const PsychoA_curiousAverageScore       = req.body.PsychologicalAssessment.TableSCL90.curiousAverageScore;
+  // const PsychoA_curiousPNumber            = req.body.PsychologicalAssessment.TableSCL90.curiousPNumber;
+  // const PsychoA_forceAverageScore         = req.body.PsychologicalAssessment.TableSCL90.forceAverageScore;
+  // const PsychoA_forcePNumber              = req.body.PsychologicalAssessment.TableSCL90.forcePNumber;
+  // const PsychoA_forceScore                = req.body.PsychologicalAssessment.TableSCL90.forceScore;
+  // const PsychoA_hostileAverageScore       = req.body.PsychologicalAssessment.TableSCL90.hostileAverageScore;
+  // const PsychoA_hostilePNumber            = req.body.PsychologicalAssessment.TableSCL90.hostilePNumber;
+  // const PsychoA_hostileScore              = req.body.PsychologicalAssessment.TableSCL90.hostileScore;
+  // const PsychoA_mType                     = req.body.PsychologicalAssessment.TableSCL90.mType;
+  // const PsychoA_nNumber                   = req.body.PsychologicalAssessment.TableSCL90.nNumber;
+  // const PsychoA_nNumberStandard           = req.body.PsychologicalAssessment.TableSCL90.nNumberStandard;
+  // const PsychoA_otherAverageScore         = req.body.PsychologicalAssessment.TableSCL90.otherAverageScore;
+  // const PsychoA_otherPNumber              = req.body.PsychologicalAssessment.TableSCL90.otherPNumber;
+  // const PsychoA_otherScore                = req.body.PsychologicalAssessment.TableSCL90.otherScore;
+  // const PsychoA_pAverageScore             = req.body.PsychologicalAssessment.TableSCL90.pAverageScore;
+  // const PsychoA_pAverageScoreStandard     = req.body.PsychologicalAssessment.TableSCL90.pAverageScoreStandard;
+  // const PsychoA_pNumber                   = req.body.PsychologicalAssessment.TableSCL90.pNumber;
+  // const PsychoA_pNumberStandard           = req.body.PsychologicalAssessment.TableSCL90.pNumberStandard;
+  // const PsychoA_pScore                    = req.body.PsychologicalAssessment.TableSCL90.pScore;
+  // const PsychoA_pScoreStandard            = req.body.PsychologicalAssessment.TableSCL90.pScoreStandard;
+  // const PsychoA_recordNo                  = req.body.PsychologicalAssessment.TableSCL90.recordNo;
+  // const PsychoA_relationAverageScore      = req.body.PsychologicalAssessment.TableSCL90.relationAverageScore;
+  // const PsychoA_relationPNumber           = req.body.PsychologicalAssessment.TableSCL90.relationPNumber;
+  // const PsychoA_relationScore             = req.body.PsychologicalAssessment.TableSCL90.relationScore;
+  // const PsychoA_spiritAverageScore        = req.body.PsychologicalAssessment.TableSCL90.spiritAverageScore;
+  // const PsychoA_spiritPNumber             = req.body.PsychologicalAssessment.TableSCL90.spiritPNumber;
+  // const PsychoA_spiritScore               = req.body.PsychologicalAssessment.TableSCL90.spiritScore;
+  // const PsychoA_stubbornAverageScore      = req.body.PsychologicalAssessment.TableSCL90.stubbornAverageScore;
+  // const PsychoA_stubbornPNumber           = req.body.PsychologicalAssessment.TableSCL90.stubbornPNumber;
+  // const PsychoA_stubbornScore             = req.body.PsychologicalAssessment.TableSCL90.stubbornScore;
+  // const PsychoA_terrorAverageScore        = req.body.PsychologicalAssessment.TableSCL90.terrorAverageScore;
+  // const PsychoA_terrorPNumber             = req.body.PsychologicalAssessment.TableSCL90.terrorPNumber;
+  // const PsychoA_terrorScore               = req.body.PsychologicalAssessment.TableSCL90.terrorScore;
+  // const PsychoA_totalAvgScore             = req.body.PsychologicalAssessment.TableSCL90.totalAvgScore;
+  // const PsychoA_totalAvgScoreStandard     = req.body.PsychologicalAssessment.TableSCL90.totalAvgScoreStandard;
+  // const PsychoA_totalScore                = req.body.PsychologicalAssessment.TableSCL90.totalScore;
+  // const PsychoA_totalScoreStandard        = req.body.PsychologicalAssessment.TableSCL90.totalScoreStandard;
 
 
 
@@ -208,16 +217,43 @@ app.post("/add", (req, res) => {
 
 
   let data = JSON.stringify(req.body); 
-  let objectValue = JSON.parse(data);
+  try {
+      var objectValue = JSON.parse(data);
+  } catch (e) {
+    console.log("Error, not a valid JSON string");
+  }
+  
+  const map = new Map();
+  map.set = JSON.parse(data);
+
   let fileName = objectValue.Member.Name + '_' + objectValue.RecordNo
   
   // console.log(recv.contextResponses[0].contextElement.attributes[0].value);
   //console.log(data.Member.Name);
+  // for (const [key, value] of Object.entries(map)) {
+  //   if (value.length == 0) {
+  //     value == "N/D";
+  //   }
+  //   console.log(key, value);
+  // }
 
+  for (const [key, value] of Object.entries(map)) {
+    console.log( key, value);
+  }
+
+  function getKey(val) {
+  return Object.keys(map).find(key => map[key] === val);
+}
+
+
+  let xx = typeof Height;
   console.log(objectValue.Member.Name);
   console.log("Altura: "+Height);
+  console.log("tipo Altura: "+xx);
+  console.log("Altura2: "+ getKey('Tooth'));
   console.log("data.MachineId");
   console.log("Accountorgid -> " + Accountorgid);
+  console.log("PEEcgEcgImg -> " + PEEcgEcgImg.length);
   
   fs.writeFileSync('./public/JSON/' + fileName + '.json', data);
   
@@ -230,6 +266,7 @@ app.post("/add", (req, res) => {
         image: './public/images/logo.png',
         width: 50
       },
+      { text: '\n\n'},
       // { text: '\n      Resumo Medicina no Trabalho                                                                                       \n\n', color: 'white', bold: true, background: '#A464A6' },
       {
       style: 'tableExample', 
@@ -237,7 +274,7 @@ app.post("/add", (req, res) => {
             heights: 10,widths: ['*'],
             body: [
               [
-                { text: '   Resumo Medicina no Trabalho: ', style: 'header',color: 'white',fillColor:'#A464A6' },                 
+                { text: '   Resumo Medicina no Trabalho ', style: 'header',color: 'white',fillColor:'#A464A6' },                 
               ],
             ]
         },   
@@ -255,7 +292,7 @@ app.post("/add", (req, res) => {
             { text: 'Nacionalidade: ', style:'boldText' },    { text: MemberNation, style:'normalText' },"     ",
             { text: 'Sexo: ', style:'boldText' },             { text: MemberSex+'\n\n', style:'normalText' }, 
             { text: 'Morada: ', style:'boldText' },           { text: MemberAddress+'\n\n', style:'normalText' }, 
-            { text: 'Telemóvel: ', style:'boldText' },        { text: MemberMobile, style:'normalText' }
+            { text: 'Telemóvel: ', style:'boldText' },        { text: MemberMobile+'\n\n\n\n', style:'normalText' }
           ],
         
       },
@@ -394,33 +431,36 @@ app.post("/add", (req, res) => {
           },         
           layout: 'lightHorizontalLines'
       },
+      {
+        image: './public/images/logo.png',
+        width: 50,
+        pageBreak: 'before'
+      },
      {
       style: 'tableExample', 
           table: {
-            headerRows: 1,heights: 10,widths: ['*', '*', '*' , '*', '*', '*', '*', '*' ],
+            headerRows: 1,heights: 10,widths: ['*', '*' ],
             body: [
-              [{colSpan: 1, text: 'Urina', style: 'header' }, '','', '','','', '',''],
-              [
-                { text: 'URO: ', style: 'boldText' }, { text: UrinalysisURO, style: 'italicText' },
-                { text: 'BLD:', style: 'boldText' } , { text: UrinalysisBLD, style: 'italicText' },
-                { text: 'BIL:', style: 'boldText' } , { text: UrinalysisBIL, style: 'italicText' },
-                { text: 'KET:', style: 'boldText' } , { text: UrinalysisKET, style: 'italicText' },
-              ],
-              [
-                { text: 'LEU: ', style: 'boldText' }, { text: UrinalysisLEU, style: 'italicText' },
-                { text: 'GLU:', style: 'boldText' } , { text: UrinalysisGLU, style: 'italicText' },
-                { text: 'PRO:', style: 'boldText' } , { text: UrinalysisPRO, style: 'italicText' },
-                { text: 'PH:', style: 'boldText' } , { text: UrinalysisPH, style: 'italicText' },
-              ],
-              [
-                { text: 'LEU: ', style: 'boldText' }, { text: UrinalysisNIT, style: 'italicText' },
-                { text: 'GLU:', style: 'boldText' } , { text: UrinalysisSG, style: 'italicText' },
-                { text: 'VC:', style: 'boldText' } , { text: UrinalysisVC, style: 'italicText' },
-                '' , '',
-              ],
+              [{colSpan: 1, text: '\n\n\nUrina', style: 'header' }, '',],
+              
+                [{ text: 'URO: ', style: 'boldText' }, { text: UrinalysisURO, style: 'italicText' }],
+                [{ text: 'BLD:', style: 'boldText' } , { text: UrinalysisBLD, style: 'italicText' }],
+                [{ text: 'BIL:', style: 'boldText' } , { text: UrinalysisBIL, style: 'italicText' }],
+                [{ text: 'KET:', style: 'boldText' } , { text: UrinalysisKET, style: 'italicText' }],
+
+                [{ text: 'LEU: ', style: 'boldText' }, { text: UrinalysisLEU, style: 'italicText' }],
+                [{ text: 'GLU:', style: 'boldText' } , { text: UrinalysisGLU, style: 'italicText' }],
+                [{ text: 'PRO:', style: 'boldText' } , { text: UrinalysisPRO, style: 'italicText' }],
+                [{ text: 'PH:', style: 'boldText' } , { text: UrinalysisPH, style: 'italicText' }],
+
+                [{ text: 'LEU: ', style: 'boldText' }, { text: UrinalysisNIT, style: 'italicText' }],
+                [{ text: 'GLU:', style: 'boldText' } , { text: UrinalysisSG, style: 'italicText' }],
+                [{ text: 'VC:', style: 'boldText' } , { text: UrinalysisVC, style: 'italicText' }],
+                
+              
             ]
           },         
-          layout: 'lightHorizontalLines'
+          layout: 'lightHorizontalLines',
       },
      {
       style: 'tableExample', 
@@ -434,8 +474,85 @@ app.post("/add", (req, res) => {
               ],
             ]
           },         
-          layout: 'lightHorizontalLines',pageBreak: 'before',
+          layout: 'lightHorizontalLines',
       },
+
+      {
+      style: 'tableExample', 
+          table: {
+            headerRows: 1,heights: 10,widths: ['*', '*'],
+            body: [
+              [{colSpan: 1, text: 'Gordura no Sangue', style: 'header' }, ''],
+              
+                [{ text: 'Total Colesterol: ', style: 'boldText' }, { text: BloodFatTChol, style: 'italicText' }],
+                [{ text: 'CHDL:', style: 'boldText' } , { text: BloodFatHdlChol, style: 'italicText' }],
+                [{ text: 'Triglicerideos:', style: 'boldText' } , { text: BloodFatTrig, style: 'italicText' }],
+                [{ text: 'Racio Lipidos Sangue:', style: 'boldText' } , { text: BloodFatTcHdl, style: 'italicText' }],
+                [{ text: 'Lipoproteina Baixa Densidade: ', style: 'boldText' }, { text: BloodFatCalcLdl, style: 'italicText' }],
+                [{ text: 'Resultado:', style: 'boldText' } , { text: BloodFatResult, style: 'italicText' }],             
+            ]
+          },         
+          layout: 'lightHorizontalLines'
+      },    
+      {
+      style: 'tableExample', 
+          table: {
+            headerRows: 1,heights: 10,widths: ['*', '*'],
+            body: [
+              [{colSpan: 1, text: 'Electrocardiograma', style: 'header' }, ''],
+              
+                [{ text: 'Hr: ', style: 'boldText' }, { text: PEEcgHr, style: 'italicText' }],
+                [{ text: 'PAxis:', style: 'boldText' } , { text: PEEcgPAxis, style: 'italicText' }],
+                [{ text: 'QRSAxis:', style: 'boldText' } , { text: PEEcgQRSAxis, style: 'italicText' }],
+                [{ text: 'TAxis:', style: 'boldText' } , { text: PEEcgTAxis, style: 'italicText' }],
+              
+              
+                [{ text: 'PR: ', style: 'boldText' }, { text: PEEcgPR, style: 'italicText' }],
+                [{ text: 'QRS:', style: 'boldText' } , { text: PEEcgQRS, style: 'italicText' }],
+                [{ text: 'QT:', style: 'boldText' } , { text: PEEcgQT, style: 'italicText' }],
+                [{ text: 'QTc:', style: 'boldText' } , { text: PEEcgQTc, style: 'italicText' }],
+              
+              
+                [{ text: 'RV5: ', style: 'boldText' }, { text: PEEcgRV5, style: 'italicText' }],
+                [{ text: 'SV1:', style: 'boldText' } , { text: PEEcgSV1, style: 'italicText' }],
+                [{ text: 'ResultStr:', style: 'boldText' } , { text: PEEcgResultStr, style: 'italicText' }],
+             
+            ]
+          },         
+          layout: 'lightHorizontalLines'
+      },      
+     
+    //  {
+    //   style: 'tableExample', 
+    //       table: {
+    //         headerRows: 1,heights: 10,widths: ['*', '*', '*' , '*', '*', '*', '*', '*' ],
+    //         body: [
+    //           [{colSpan: 1, text: 'Electrocardiograma', style: 'header' }, '','', '','','', '',''],
+    //           [
+    //             { text: 'Hr: ', style: 'boldText' }, { text: PEEcgHr, style: 'italicText' },
+    //             { text: 'PAxis:', style: 'boldText' } , { text: PEEcgPAxis, style: 'italicText' },
+    //             { text: 'QRSAxis:', style: 'boldText' } , { text: PEEcgQRSAxis, style: 'italicText' },
+    //             { text: 'TAxis:', style: 'boldText' } , { text: PEEcgTAxis, style: 'italicText' },
+    //           ],
+    //           [
+    //             { text: 'PR: ', style: 'boldText' }, { text: PEEcgPR, style: 'italicText' },
+    //             { text: 'QRS:', style: 'boldText' } , { text: PEEcgQRS, style: 'italicText' },
+    //             { text: 'QT:', style: 'boldText' } , { text: PEEcgQT, style: 'italicText' },
+    //             { text: 'QTc:', style: 'boldText' } , { text: PEEcgQTc, style: 'italicText' },
+    //           ],
+    //           [
+    //             { text: 'RV5: ', style: 'boldText' }, { text: PEEcgRV5, style: 'italicText' },
+    //             { text: 'SV1:', style: 'boldText' } , { text: PEEcgSV1, style: 'italicText' },
+    //             { text: 'ResultStr:', style: 'boldText' } , { text: PEEcgResultStr, style: 'italicText' },
+    //             '' , '',
+    //           ],
+    //         ]
+    //       },         
+    //       layout: 'lightHorizontalLines'
+    //   },
+    
+    
+    
       // {
       // style: 'tableExample', 
       //     table: {
@@ -507,7 +624,9 @@ app.post("/add", (req, res) => {
       //   },
       //   layout: 'noBorders'
       // },
+ 
       {
+        
           image: 'data:image/jpeg;base64,'+PEEcgEcgImg,
           pageBreak: 'before',
           width: 875,
